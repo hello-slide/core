@@ -1,0 +1,39 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: userDataState
+  namespace: userDataState
+spec:
+  type: state.gcp.firestore
+  version: v1
+  metadata:
+  - name: type
+    value: "service_account"
+  - name: project_id
+    value: "helloslide"
+  - name: private_key_id
+    seacretKeyRef:
+      name: firestore-private_key_id
+      key: firestore-private_key_id
+  - name: private_key
+    seacretKeyRef:
+      name: firestore-private_key
+      key: firestore-private_key
+  - name: client_email
+    seacretKeyRef:
+      name: firestore-email
+      key: firestore-email
+  - name: client_id
+    seacretKeyRef:
+      name: firestore-client_id
+      key: firestore-client_id
+  - name: auth_uri
+    value: "https://accounts.google.com/o/oauth2/auth"
+  - name: token_uri
+    value: "https://oauth2.googleapis.com/token"
+  - name: auth_provider_x509_cert_url
+    value: "https://www.googleapis.com/oauth2/v1/certs"
+  - name: client_x509_cert_url
+    value: "https://www.googleapis.com/robot/v1/metadata/x509/firestoreaccess%40helloslide.iam.gserviceaccount.com" # Required.
+  - name: entity_kind
+    value: "UserData"
