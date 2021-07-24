@@ -1,0 +1,42 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: account-manager
+  labels:
+    app: go
+spec:
+  selector:
+    app: go
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+  type: LoadBalancer
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-manager
+  labels:
+    app: go
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go
+  template:
+    metadata:
+      labels:
+        app: go
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "account-manager"
+        dapr.io/app-port: "3000"
+    spec:
+      containers:
+      - name: go
+        image: ghcr.io/hello-slide/account-manager:main
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
