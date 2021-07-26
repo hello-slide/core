@@ -1,0 +1,14 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sample-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: 34.146.173.245
+    networking.gke.io/managed-certificates: helloslide-api
+    kubernetes.io/ingress.class: "gce"
+spec:
+  defaultBackend:
+    service:
+      name: account-manager
+      port:
+        number: 80

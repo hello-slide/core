@@ -42,10 +42,10 @@ dapr status -k
 
     ```bash
     # Firestore用
-    kubectl create secret generic eventhubs-secret --from-literal=firestore-private_key_id=*********
-    kubectl create secret generic eventhubs-secret --from-literal=firestore-private_key=*********
-    kubectl create secret generic eventhubs-secret --from-literal=firestore-email=*********
-    kubectl create secret generic eventhubs-secret --from-literal=firestore-client_id=*********
+    kubectl create secret generic firestore-secret --from-literal=private_key_id=*********
+    kubectl create secret generic firestore-secret --from-literal=private_key=*********
+    kubectl create secret generic firestore-secret --from-literal=email=*********
+    kubectl create secret generic firestore-secret --from-literal=client_id=*********
     ```
 
 2. firestore接続用dapr appをデプロイ

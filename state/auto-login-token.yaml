@@ -1,8 +1,8 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: userDataState
-  namespace: userDataState
+  name: autoLoginTokenState
+  namespace: autoLoginTokenState
 spec:
   type: state.gcp.firestore
   version: v1
@@ -36,4 +36,4 @@ spec:
   - name: client_x509_cert_url
     value: "https://www.googleapis.com/robot/v1/metadata/x509/firestoreaccess%40helloslide.iam.gserviceaccount.com" # Required.
   - name: entity_kind
-    value: "UserData"
+    value: "AutoLoginToken"
