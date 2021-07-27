@@ -46,6 +46,11 @@ dapr status -k
     kubectl create secret generic firestore-secret --from-literal=private_key=*********
     kubectl create secret generic firestore-secret --from-literal=email=*********
     kubectl create secret generic firestore-secret --from-literal=client_id=*********
+
+    # account manager 用
+    kubectl create secret generic account-manager-secret --from-literal=google-oauth-public=*******
+    kubectl create secret generic account-manager-secret --from-literal=
+    kubectl create secret generic account-manager-secret --from-literal=seed-value=******
     ```
 
 2. firestore接続用dapr appをデプロイ
