@@ -1,8 +1,8 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: autoLoginTokenState
-  namespace: autoLoginTokenState
+  name: login-token-state
+  namespace: default
 spec:
   type: state.gcp.firestore
   version: v1
@@ -12,19 +12,19 @@ spec:
   - name: project_id
     value: "helloslide"
   - name: private_key_id
-    seacretKeyRef:
+    secretKeyRef:
       name: firestore-secret
       key: private_key_id
   - name: private_key
-    seacretKeyRef:
+    secretKeyRef:
       name: firestore-secret
       key: private_key
   - name: client_email
-    seacretKeyRef:
+    secretKeyRef:
       name: firestore-secret
       key: email
   - name: client_id
-    seacretKeyRef:
+    secretKeyRef:
       name: firestore-secret
       key: client_id
   - name: auth_uri

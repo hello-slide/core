@@ -14,6 +14,8 @@ HelloSlide APIではDaprを使用した分散アプリケーションで構築�
 
 - [account-manager](https://github.com/hello-slide/account-manager)
   - アカウント作成、削除などの操作を行います。
+- [token-manager](https://github.com/hello-slide/token-manager)
+  - PASETOを使用したトークンの作成、検証を行うDaprアプリケーションです。
 
 ## How To
 

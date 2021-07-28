@@ -40,32 +40,53 @@ dapr status -k
 
 1. k8s secretにkeyを追加する
 
+    - firestore-secret.env
+
+        ```env
+        private_key_id=********
+        private_key=********
+        email=********
+        client_id=********
+        ```
+
+    - account-manager-secret.env
+
+        ```env
+        google-oauth-public=********
+        seed-value=********
+        ```
+
     ```bash
-    # Firestore用
-    kubectl create secret generic firestore-secret --from-literal=private_key_id=*********
-    kubectl create secret generic firestore-secret --from-literal=private_key=*********
-    kubectl create secret generic firestore-secret --from-literal=email=*********
-    kubectl create secret generic firestore-secret --from-literal=client_id=*********
+    # Firestore, Cloud Secret用
+    kubectl create secret generic google-secret --from-env-file google-secret.env
 
     # account manager 用
-    kubectl create secret generic account-manager-secret --from-literal=google-oauth-public=*******
-    kubectl create secret generic account-manager-secret --from-literal=
-    kubectl create secret generic account-manager-secret --from-literal=seed-value=******
+    kubectl create secret generic account-manager-secret --from-env-file account-manager-secret.env
     ```
 
 2. firestore接続用dapr appをデプロイ
 
     ```bash
-    kubectl apply -f ./state/user_data.yaml
+    kubectl apply -f ./state/user-data.yaml
+    kubectl apply -f ./state/login-token.yaml
+    kubectl apply -f ./secret/secret-state.yaml
     ```
 
 ### 2.3. Appのデプロイ
+
+```bash
+kubectl apply -f ./components/account-manager.yaml
+```
 
 ## 3. Dapr App一覧
 
 - State Store
   - Firestore
-    - [`state/user_data.yaml`](../state/user_data.yaml)
+    - [`state/user-data.yaml`](../state/user-data.yaml)
+    - [`state/login-token.yalm`](../state/login-token.yaml)
+- Secret Store
+  - Google Secret Manager
+    - [`state/secret-state.yaml`](../secret/secret-state.yaml)
 
 ## 4. 参考文献等
 
