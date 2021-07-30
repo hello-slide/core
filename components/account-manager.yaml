@@ -38,7 +38,7 @@ spec:
     spec:
       containers:
       - name: go
-        image: ghcr.io/hello-slide/account-manager@sha256:00ea353bf8e4272573bb2eb1d5795d513823b468b4eb488c3d2c14af77d924a8
+        image: ghcr.io/hello-slide/account-manager@sha256:60cff95da8e2eaa19d91192720268350c47e19ab9a7267588e5dcf32d3decf12
         ports:
         - containerPort: 3000
         imagePullPolicy: Always

@@ -1,17 +1,3 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: token-manager
-  labels:
-    app: go
-spec:
-  selector:
-    app: go
-  ports:
-    - port: 80
-      targetPort: 3000
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -36,7 +22,7 @@ spec:
     spec:
       containers:
       - name: go
-        image: ghcr.io/hello-slide/token-manager@sha256:c45153dcf939e27485355f331884ab2db51da1d307660f9a111131d990be91fd
+        image: ghcr.io/hello-slide/token-manager@sha256:99686402f12df2837c82359015e3e12346c09160d1d9fbfc638367dab33cd645
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
