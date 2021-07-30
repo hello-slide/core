@@ -38,4 +38,4 @@ spec:
       name: google-secret
       key: client_x509_cert_url
   - name: entity_kind
-    value: "UserData"
+    value: "DaprUserData"

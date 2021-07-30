@@ -40,28 +40,19 @@ dapr status -k
 
 1. k8s secretにkeyを追加する
 
-    - firestore-secret.env
+    - google-secret.env
 
         ```env
-        private_key_id=********
-        private_key=********
-        email=********
-        client_id=********
-        ```
-
-    - account-manager-secret.env
-
-        ```env
-        google-oauth-public=********
-        seed-value=********
+        private_key_id="********"
+        private_key="********"
+        email="********"
+        client_id="********"
+        client_x509_cert_url="="********""
         ```
 
     ```bash
     # Firestore, Cloud Secret用
     kubectl create secret generic google-secret --from-env-file google-secret.env
-
-    # account manager 用
-    kubectl create secret generic account-manager-secret --from-env-file account-manager-secret.env
     ```
 
 2. firestore接続用dapr appをデプロイ
@@ -70,12 +61,22 @@ dapr status -k
     kubectl apply -f ./state/user-data.yaml
     kubectl apply -f ./state/login-token.yaml
     kubectl apply -f ./secret/secret-state.yaml
+
+    # 確認
+    dapr components -k
     ```
 
 ### 2.3. Appのデプロイ
 
 ```bash
+kubectl apply -f ./components/token-manager.yaml
 kubectl apply -f ./components/account-manager.yaml
+
+# 確認
+dapr list -k
+
+# ログ確認
+dapr logs -k -a [app-id]
 ```
 
 ## 3. Dapr App一覧

@@ -13,19 +13,19 @@ spec:
     value: "helloslide"
   - name: private_key_id
     secretKeyRef:
-      name: firestore-secret
+      name: google-secret
       key: private_key_id
   - name: private_key
     secretKeyRef:
-      name: firestore-secret
+      name: google-secret
       key: private_key
   - name: client_email
     secretKeyRef:
-      name: firestore-secret
+      name: google-secret
       key: email
   - name: client_id
     secretKeyRef:
-      name: firestore-secret
+      name: google-secret
       key: client_id
   - name: auth_uri
     value: "https://accounts.google.com/o/oauth2/auth"
@@ -34,6 +34,8 @@ spec:
   - name: auth_provider_x509_cert_url
     value: "https://www.googleapis.com/oauth2/v1/certs"
   - name: client_x509_cert_url
-    value: "https://www.googleapis.com/robot/v1/metadata/x509/firestoreaccess%40helloslide.iam.gserviceaccount.com" # Required.
+    secretKeyRef:
+      name: google-secret
+      key: client_x509_cert_url
   - name: entity_kind
-    value: "AutoLoginToken"
+    value: "DaprLoginToken"

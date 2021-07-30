@@ -1,23 +1,7 @@
-kind: Service
-apiVersion: v1
-metadata:
-  name: account-manager
-  labels:
-    app: go
-spec:
-  selector:
-    app: go
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 3000
-  type: LoadBalancer
-
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: account-manager
+  name: token-manager
   labels:
     app: go
 spec:
@@ -31,14 +15,14 @@ spec:
         app: go
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "account-manager"
-        dapr.io/app-port: "50001"
+        dapr.io/app-id: "token-manager"
+        dapr.io/app-port: "3000"
         dapr.io/app-protocol: "grpc"
         dapr.io/log-level: "debug"
     spec:
       containers:
       - name: go
-        image: ghcr.io/hello-slide/account-manager@sha256:cff5fcaba0a8231fbde5854e2ebfdf9e43af91cf6b902bdda13709e6088df1bb
+        image: ghcr.io/hello-slide/token-manager@sha256:f7822fe15a9dc4dd7918ca534aaeac24386fad6b4226754a2d24b625c96b570e
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
