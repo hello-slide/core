@@ -7,6 +7,7 @@ metadata:
 spec:
   selector:
     app: go
+  type: NodePort
   ports:
   - protocol: TCP
     port: 80
@@ -38,7 +39,7 @@ spec:
     spec:
       containers:
       - name: go
-        image: ghcr.io/hello-slide/account-manager@sha256:60cff95da8e2eaa19d91192720268350c47e19ab9a7267588e5dcf32d3decf12
+        image: ghcr.io/hello-slide/account-manager@sha256:93add3321bb3aa3a68038094ff47209b313a55c0bb2f79a9af9da035afaf6ec3
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
