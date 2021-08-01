@@ -91,12 +91,15 @@ dapr status -k
     ```
 
     ```bash
-    # Redis接続
-    kubectl exec --tty -i redis-client --namespace default -- bash
+    # redis 接続
+    kubectl run --namespace default redis-client --restart='Never'  --env REDIS_PASSWORD=****  --image docker.io/bitnami/redis:6.2.5-debian-10-r0 --command -- sleep infinity
 
-    # redis-cliで接続
-    redis-cli -h redis-master -a $REDIS_PASSWORD
-    redis-cli -h redis-replicas -a $REDIS_PASSWORD
+    # 接続する。（参考: https://qiita.com/MahoTakara/items/a14547166522d3e113a0#redis-cli%E3%81%8B%E3%82%89%E3%82%A2%E3%82%AF%E3%82%BB%E3%82%B9%E3%81%97%E3%81%A6%E5%8B%95%E4%BD%9C%E7%A2%BA%E8%AA%8D）
+
+    kubectl exec --tty -i redis-client --namespace default -- bash
+    > redis-cli -h redis-master -a $REDIS_PASSWORD
+    > (redis-cli -h redis-replicas -a $REDIS_PASSWORD)
+    >> keys *
     ```
 
 ### 2.3. Appのデプロイ
