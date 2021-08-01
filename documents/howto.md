@@ -61,7 +61,6 @@ dapr status -k
     ```bash
     kubectl apply -f ./state/user-data.yaml
     kubectl apply -f ./state/user-email.yaml
-    kubectl apply -f ./state/login-token.yaml
     kubectl apply -f ./secret/secret-state.yaml
 
     # 確認
