@@ -83,8 +83,20 @@ dapr status -k
     # redisパスワードをシークレットに追加
     kubectl create secret generic redis-secret --from-literal=password=*********
 
+    # Dpar接続
+    kubectl apply -f ./state/redis.yaml
+
     # もしシークレットが存在している場合
     kubectl delete secret redis-secret
+    ```
+
+    ```bash
+    # Redis接続
+    kubectl exec --tty -i redis-client --namespace default -- bash
+
+    # redis-cliで接続
+    redis-cli -h redis-master -a $REDIS_PASSWORD
+    redis-cli -h redis-replicas -a $REDIS_PASSWORD
     ```
 
 ### 2.3. Appのデプロイ
