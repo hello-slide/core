@@ -79,6 +79,10 @@ dapr list -k
 dapr logs -k -a [app-id]
 ```
 
+### 2.4 外部公開とSSL化
+
+[here](./ssl.md)
+
 ## 3. Dapr App一覧
 
 - State Store

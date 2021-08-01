@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: token-manager
   labels:
-    app: go
+    app: token-manager
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: go
+      app: token-manager
   template:
     metadata:
       labels:
-        app: go
+        app: token-manager
       annotations:
         dapr.io/enabled: "true"
         dapr.io/app-id: "token-manager"
@@ -21,7 +21,7 @@ spec:
         dapr.io/log-level: "debug"
     spec:
       containers:
-      - name: go
+      - name: token-manager
         image: ghcr.io/hello-slide/token-manager@sha256:99686402f12df2837c82359015e3e12346c09160d1d9fbfc638367dab33cd645
         ports:
         - containerPort: 3000
