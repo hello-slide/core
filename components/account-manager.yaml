@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: account-manager
-        image: ghcr.io/hello-slide/account-manager@sha256:2db77941bbb72dc4bb13ed5d1991b0348916095e1b4384f249d8fe00f4c628fb
+        image: ghcr.io/hello-slide/account-manager@sha256:508c11be0d8fdb634fd0bdb0660e4312f185107765c3f64f358ad05dcc9ee8fa
         ports:
         - containerPort: 3000
         imagePullPolicy: Always

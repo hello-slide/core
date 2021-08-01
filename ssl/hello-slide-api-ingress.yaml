@@ -10,7 +10,7 @@ spec:
   rules:
     - http:
         paths:
-          - path: /account
+          - path: /account/*
             pathType: ImplementationSpecific
             backend:
               service:

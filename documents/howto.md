@@ -18,6 +18,7 @@
 - gcloud
 - kubectl
   - gcloudと連携済み
+- helm
 
 ## 2. セットアップ
 
@@ -55,15 +56,36 @@ dapr status -k
     kubectl create secret generic google-secret --from-env-file google-secret.env
     ```
 
-2. firestore接続用dapr appをデプロイ
+2. Dapr appをデプロイ
 
     ```bash
     kubectl apply -f ./state/user-data.yaml
+    kubectl apply -f ./state/user-email.yaml
     kubectl apply -f ./state/login-token.yaml
     kubectl apply -f ./secret/secret-state.yaml
 
     # 確認
     dapr components -k
+    ```
+
+3. Redisのデプロイ
+
+    ```bash
+    # deploy redis
+    helm repo add bitnami https://charts.bitnami.com/bitnami
+    helm install redis bitnami/redis
+
+    # 確認
+    kubectl get pods
+
+    # redisのパスワード取得
+    kubectl get secret --namespace default redis -o jsonpath="{.data.redis-password}" | base64 --decode
+
+    # redisパスワードをシークレットに追加
+    kubectl create secret generic redis-secret --from-literal=password=*********
+
+    # もしシークレットが存在している場合
+    kubectl delete secret redis-secret
     ```
 
 ### 2.3. Appのデプロイ
