@@ -107,6 +107,7 @@ dapr status -k
 ```bash
 kubectl apply -f ./components/token-manager.yaml
 kubectl apply -f ./components/account-manager.yaml
+kubectl apply -f ./components/slide-manager.yaml
 
 # 確認
 dapr list -k

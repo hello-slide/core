@@ -1,12 +1,12 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: account-manager
+  name: slide-manager
   labels:
-    app: account-manager
+    app: slide-manager
 spec:
   selector:
-    app: account-manager
+    app: slide-manager
   type: NodePort
   ports:
   - protocol: TCP
@@ -16,28 +16,28 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: account-manager
+  name: slide-manager
   labels:
-    app: account-manager
+    app: slide-manager
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: account-manager
+      app: slide-manager
   template:
     metadata:
       labels:
-        app: account-manager
+        app: slide-manager
       annotations:
         dapr.io/enabled: "true"
-        dapr.io/app-id: "account-manager"
+        dapr.io/app-id: "slide-manager"
         dapr.io/app-port: "50001"
         dapr.io/app-protocol: "grpc"
         dapr.io/log-level: "debug"
     spec:
       containers:
-      - name: account-manager
-        image: ghcr.io/hello-slide/account-manager@sha256:41889de959d733c8b48ca16fb6aa3c8a469e2dc39e256e29abf85e7210df0d32
+      - name: slide-manager
+        image: ghcr.io/hello-slide/slide-manager@sha256:
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
