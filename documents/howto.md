@@ -10,7 +10,7 @@
 - Google Cloud Firestore
 - [GCPサービスアカウント](https://cloud.google.com/iam/docs/creating-managing-service-accounts?hl=ja)
   - 鍵を作成してjsonをダウンロードしておく
-  - Cloud Firestoreの接続に使用します。
+  - Cloud FirestoreとSecret Managerの接続に使用します。権限を追加しておいてください。
 
 ### 1.2. ローカル編
 
