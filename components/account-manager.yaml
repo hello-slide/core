@@ -37,7 +37,26 @@ spec:
     spec:
       containers:
       - name: account-manager
-        image: ghcr.io/hello-slide/account-manager@sha256:41889de959d733c8b48ca16fb6aa3c8a469e2dc39e256e29abf85e7210df0d32
+        image: ghcr.io/hello-slide/account-manager@sha256:84d57fa873d461fe996c54454243924a47b87467140781218b5e9feb494cbcd7
+        env:
+        - name: GOOGLE_OAUTH_KEY
+          valueFrom:
+            secretKeyRef:
+              name: account-manager-secret
+              key: google_oauth
+        - name: SEED
+          valueFrom:
+            secretKeyRef:
+              name: account-manager-secret
+              key: seed
+        - name: TOKEN_MANAGER
+          value: "token-manager"
+        - name: USER_DATA_STATE
+          value: "user-data-state"
+        - name: USER_EMAIL_STATE
+          value: "user-email-state"
+        - name: REFRESH_TOKEN_STATE
+          value: "login-token-state"
         ports:
         - containerPort: 3000
         imagePullPolicy: Always

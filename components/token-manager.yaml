@@ -22,7 +22,13 @@ spec:
     spec:
       containers:
       - name: token-manager
-        image: ghcr.io/hello-slide/token-manager@sha256:99686402f12df2837c82359015e3e12346c09160d1d9fbfc638367dab33cd645
+        image: ghcr.io/hello-slide/token-manager@sha256:a68e12383a1ed330a0e42e1e6a583f66f1b99dd85cf16317990d557586876828
+        env:
+        - name: PUBLIC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: token-manager-secret
+              key: public_key
         ports:
         - containerPort: 3000
         imagePullPolicy: Always

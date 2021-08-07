@@ -1,10 +1,10 @@
 apiVersion: dapr.io/v1alpha1
 kind: Component
 metadata:
-  name: google-secret-state
+  name: slide-config-state
   namespace: default
 spec:
-  type: secretstores.gcp.secretmanager
+  type: state.gcp.firestore
   version: v1
   metadata:
   - name: type
@@ -37,3 +37,5 @@ spec:
     secretKeyRef:
       name: google-secret
       key: client_x509_cert_url
+  - name: entity_kind
+    value: "Email"

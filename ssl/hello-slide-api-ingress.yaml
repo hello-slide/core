@@ -17,4 +17,11 @@ spec:
                 name: account-manager
                 port:
                   number: 80
+          - path: /slide/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: slide-manager
+                port:
+                  number: 80
 

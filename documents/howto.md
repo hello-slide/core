@@ -51,9 +51,34 @@ dapr status -k
         client_x509_cert_url="="********""
         ```
 
+    - account-manager-secret.env
+
+        ```env
+        google_oauth="********"
+        seed="*****"
+        ```
+
+    - token-manager-secret.env
+
+        ```env
+        public_key="****"
+        ```
+
+    - [google iam].json
+      - google iamでダウンロードしたjson
+
     ```bash
     # Firestore, Cloud Secret用
     kubectl create secret generic google-secret --from-env-file google-secret.env
+
+    # account-manager用
+    kubectl create secret generic account-manager-secret --from-env-file account-manager-secret.env
+
+    # token-manager用
+    kubectl create secret generic token-manager-secret --from-env-file token-manager-secret.env
+
+    # slide-manager用
+    kubectl create secret generic slide-manager-secret --from-file=json=./[google iam].json
     ```
 
 2. Dapr appをデプロイ
@@ -61,7 +86,7 @@ dapr status -k
     ```bash
     kubectl apply -f ./state/user-data.yaml
     kubectl apply -f ./state/user-email.yaml
-    kubectl apply -f ./secret/secret-state.yaml
+    kubectl apply -f ./state/slide-config.yaml
 
     # 確認
     dapr components -k
