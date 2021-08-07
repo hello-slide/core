@@ -150,10 +150,10 @@ dapr logs -k -a [app-id]
 - State Store
   - Firestore
     - [`state/user-data.yaml`](../state/user-data.yaml)
-    - [`state/login-token.yalm`](../state/login-token.yaml)
-- Secret Store
-  - Google Secret Manager
-    - [`state/secret-state.yaml`](../secret/secret-state.yaml)
+    - [`state/user-email.yalm`](../state/user-email.yaml)
+    - [`state/slide-config.yaml`](../state/slide-config.yaml)
+  - Redis on k8s
+    - [`state/redis.yaml`](../state/redis.yaml)
 
 ## 4. 参考文献等
 
