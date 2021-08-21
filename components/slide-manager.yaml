@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: slide-manager
-        image: ghcr.io/hello-slide/slide-manager@sha256:0732841de9bac2e5ac3bbcc2384fd1ae79c8e338d31af96f9be0660a6a8f1374
+        image: ghcr.io/hello-slide/slide-manager@sha256:1a2eb18f02e6fe30ee917744afbd74d018ef1be60d16d599e83b5a7ffbc47733
         env:
         - name: KEY
           valueFrom:
