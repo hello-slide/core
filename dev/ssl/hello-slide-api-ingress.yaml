@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: hello-slide-api-ingress
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: hello-slide-api
+    kubernetes.io/ingress.global-static-ip-name: hello-slide-api-dev
     networking.gke.io/managed-certificates: hello-slide-api
     kubernetes.io/ingress.class: "gce"
 spec:

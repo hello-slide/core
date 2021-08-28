@@ -103,17 +103,8 @@ dapr status -k
     # 確認
     kubectl get pods
 
-    # redisのパスワード取得
-    kubectl get secret --namespace default redis -o jsonpath="{.data.redis-password}" | base64 --decode
-
-    # redisパスワードをシークレットに追加
-    kubectl create secret generic redis-secret --from-literal=password=*********
-
     # Dpar接続
     kubectl apply -f ./state/redis.yaml
-
-    # もしシークレットが存在している場合
-    kubectl delete secret redis-secret
     ```
 
     ```bash

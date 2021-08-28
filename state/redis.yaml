@@ -11,5 +11,6 @@ spec:
     value: redis-master:6379
   - name: redisPassword
     secretKeyRef:
-      name: redis-secret
-      key: password
+      name: redis
+      key: redis-password
+
