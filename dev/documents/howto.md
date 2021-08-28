@@ -22,11 +22,17 @@
 
 ## 2. セットアップ
 
-### 2.1. k8sクラスタ作成
+### 2.1. k8sクラスタ切り替え
 
 ```bash
-gcloud container clusters create [name] --num-nodes=1
+# 一覧
+gcloud container clusters list
+
+# 切り替え
+$ gcloud container clusters get-credentials [name]
 ```
+
+[kubectl でのクラスタの切り替え設定](https://qiita.com/sonots/items/f82912367693d717ff06)
 
 ### 2.2. Dapr Appのデプロイ
 
