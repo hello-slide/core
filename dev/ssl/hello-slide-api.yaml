@@ -1,0 +1,7 @@
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: hello-slide-api
+spec:
+  domains:
+    - api.hello-slide.net

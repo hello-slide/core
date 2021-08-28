@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: hello-slide-api-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: hello-slide-api
+    networking.gke.io/managed-certificates: hello-slide-api
+    kubernetes.io/ingress.class: "gce"
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /account/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: account-manager
+                port:
+                  number: 80
+          - path: /slide/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: slide-manager
+                port:
+                  number: 80
+

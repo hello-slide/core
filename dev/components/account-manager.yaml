@@ -1,0 +1,69 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: account-manager
+  labels:
+    app: account-manager
+spec:
+  selector:
+    app: account-manager
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: account-manager
+  labels:
+    app: account-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: account-manager
+  template:
+    metadata:
+      labels:
+        app: account-manager
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "account-manager"
+        dapr.io/app-port: "50001"
+        dapr.io/app-protocol: "grpc"
+        dapr.io/log-level: "debug"
+    spec:
+      containers:
+      - name: account-manager
+        image: ghcr.io/hello-slide/account-manager@sha256:289b5e9bce905ba4f2ffbfe1d946588f3728fc72a12d1fddf89b91694860f3a7
+        env:
+        - name: GOOGLE_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              name: account-manager-secret
+              key: google_client
+        - name: GOOGLE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: account-manager-secret
+              key: google_secret
+        - name: SEED
+          valueFrom:
+            secretKeyRef:
+              name: account-manager-secret
+              key: seed
+        - name: TOKEN_MANAGER
+          value: "token-manager"
+        - name: USER_DATA_STATE
+          value: "user-data-state"
+        - name: USER_EMAIL_STATE
+          value: "user-email-state"
+        - name: REFRESH_TOKEN_STATE
+          value: "login-token-state"
+        - name: API_URL
+          value: "https://api.hello-slide.net"
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always

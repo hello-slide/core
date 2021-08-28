@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: token-manager
+  labels:
+    app: token-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: token-manager
+  template:
+    metadata:
+      labels:
+        app: token-manager
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "token-manager"
+        dapr.io/app-port: "3000"
+        dapr.io/app-protocol: "grpc"
+        dapr.io/log-level: "debug"
+    spec:
+      containers:
+      - name: token-manager
+        image: ghcr.io/hello-slide/token-manager@sha256:a68e12383a1ed330a0e42e1e6a583f66f1b99dd85cf16317990d557586876828
+        env:
+        - name: PUBLIC_KEY
+          valueFrom:
+            secretKeyRef:
+              name: token-manager-secret
+              key: public_key
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
