@@ -37,13 +37,18 @@ spec:
     spec:
       containers:
       - name: account-manager
-        image: ghcr.io/hello-slide/account-manager@sha256:38ad426a2b181c9cf9e711e74be4f097bb98b53652a8f416268e5bb99480871e
+        image: ghcr.io/hello-slide/account-manager@sha256:289b5e9bce905ba4f2ffbfe1d946588f3728fc72a12d1fddf89b91694860f3a7
         env:
-        - name: GOOGLE_OAUTH_KEY
+        - name: GOOGLE_CLIENT_ID
           valueFrom:
             secretKeyRef:
               name: account-manager-secret
-              key: google_oauth
+              key: google_client
+        - name: GOOGLE_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: account-manager-secret
+              key: google_secret
         - name: SEED
           valueFrom:
             secretKeyRef:
@@ -57,6 +62,8 @@ spec:
           value: "user-email-state"
         - name: REFRESH_TOKEN_STATE
           value: "login-token-state"
+        - name: API_URL
+          value: "https://api.hello-slide.jp"
         ports:
         - containerPort: 3000
         imagePullPolicy: Always

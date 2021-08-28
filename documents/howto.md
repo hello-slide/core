@@ -54,8 +54,9 @@ dapr status -k
     - account-manager-secret.env
 
         ```env
-        google_oauth="********"
-        seed="*****"
+        google_client=********
+        google_secret=********
+        seed=*****
         ```
 
     - token-manager-secret.env
