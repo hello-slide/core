@@ -20,7 +20,7 @@ metadata:
   labels:
     app: slide-manager
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: slide-manager
@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: slide-manager
-        image: ghcr.io/hello-slide/slide-manager@sha256:407511701389e909ccff6f3113c3d27a9564f9eee48ee4e504dc1f76b7e93eb1
+        image: ghcr.io/hello-slide/slide-manager@sha256:ad37e1f14eca7452f45ea4894ad244cbd6c4e80642fbe57dad26ca3edf143c67
         env:
         - name: KEY
           valueFrom:

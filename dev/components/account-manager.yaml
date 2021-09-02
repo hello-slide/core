@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: account-manager
-        image: ghcr.io/hello-slide/account-manager@sha256:8465f43b9dcd9b19bbf54172cd48c6daecc4cf85695c23b2f68f2f3956ca333f
+        image: ghcr.io/hello-slide/account-manager@sha256:42cab88e126fd7f4e9cb56510020bd0b335b7c0b0e340033d141aba9a87b53f8
         env:
         - name: GOOGLE_CLIENT_ID
           valueFrom:

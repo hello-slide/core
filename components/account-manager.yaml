@@ -20,7 +20,7 @@ metadata:
   labels:
     app: account-manager
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: account-manager
@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: account-manager
-        image: ghcr.io/hello-slide/account-manager@sha256:289b5e9bce905ba4f2ffbfe1d946588f3728fc72a12d1fddf89b91694860f3a7
+        image: ghcr.io/hello-slide/account-manager@sha256:4ed8930de14b5071735b1c9f10a3930ee4a03a20e55d9503418005ef06fe5adc
         env:
         - name: GOOGLE_CLIENT_ID
           valueFrom:

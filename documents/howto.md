@@ -31,7 +31,7 @@ gcloud container clusters create [name] --num-nodes=1
 ### 2.2. Dapr Appのデプロイ
 
 ```bash
-dapr init --kubernetes --wait
+dapr init -k --enable-ha=true --wait
 
 # status
 dapr status -k

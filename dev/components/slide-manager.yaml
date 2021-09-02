@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: slide-manager
-        image: ghcr.io/hello-slide/slide-manager@sha256:fbb54506cf048664cb3228c2d8d2df341dfcc46528d18ed82368d2693c150b16
+        image: ghcr.io/hello-slide/slide-manager@sha256:ad37e1f14eca7452f45ea4894ad244cbd6c4e80642fbe57dad26ca3edf143c67
         env:
         - name: KEY
           valueFrom:
@@ -49,7 +49,7 @@ spec:
         - name: TOKEN_MANAGER
           value: "token-manager"
         - name: API_URL
-          value: "https://api.hello-slide.jp"
+          value: "https://api.hello-slide.net"
         ports:
         - containerPort: 3000
         imagePullPolicy: Always
