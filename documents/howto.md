@@ -65,8 +65,18 @@ dapr status -k
         public_key="****"
         ```
 
+    - sql-secret.env
+
+        ```env
+        user=****
+        password=****
+        name=****
+        ```
+
     - [google iam].json
       - google iamでダウンロードしたjson
+    - [google iam].json
+      - cloud sql用 Google IAM
 
     ```bash
     # Firestore, Cloud Secret用
@@ -80,6 +90,10 @@ dapr status -k
 
     # slide-manager用
     kubectl create secret generic slide-manager-secret --from-file=json=./[google iam].json
+
+    # synchronous-controller
+    kubectl create secret generic synchronous-controller-iam --from-file=service_account.json=./[google iam].json
+    kubectl create secret generic sql-secret --from-env-file sql-secret.env
     ```
 
 2. Dapr appをデプロイ
@@ -125,6 +139,7 @@ dapr status -k
 kubectl apply -f ./components/token-manager.yaml
 kubectl apply -f ./components/account-manager.yaml
 kubectl apply -f ./components/slide-manager.yaml
+kubectl apply -f ./components/synchronous-controller.yaml
 
 # 確認
 dapr list -k

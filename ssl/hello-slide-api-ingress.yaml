@@ -24,4 +24,11 @@ spec:
                 name: slide-manager
                 port:
                   number: 80
+          - path: /sync/*
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: synchronous-controller
+                port:
+                  number: 80
 

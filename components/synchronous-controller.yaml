@@ -1,0 +1,89 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: synchronous-controller
+  labels:
+    app: synchronous-controller
+spec:
+  selector:
+    app: synchronous-controller
+  type: NodePort
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 3000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: synchronous-controller
+  labels:
+    app: synchronous-controller
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: synchronous-controller
+  template:
+    metadata:
+      labels:
+        app: synchronous-controller
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "synchronous-controller"
+        dapr.io/app-port: "50001"
+        dapr.io/app-protocol: "grpc"
+        dapr.io/log-level: "debug"
+    spec:
+      containers:
+      - name: synchronous-controller
+        image: ghcr.io/hello-slide/synchronous-controller@sha256:694b7062bf0b80c70c8be0ffd3e344ba31b2f9da726cb79f61713083a3d29bb1
+        env:
+        - name: DB_USER
+          valueFrom:
+            secretKeyRef:
+              name: sql-secret
+              key: user
+        - name: DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: sql-secret
+              key: name
+        - name: DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: sql-secret
+              key: password
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Always
+      - name: cloud-sql-proxy
+        # It is recommended to use the latest version of the Cloud SQL proxy
+        # Make sure to update on a regular schedule!
+        image: gcr.io/cloudsql-docker/gce-proxy:1.17
+        command:
+          - "/cloud_sql_proxy"
+
+          # If connecting from a VPC-native GKE cluster, you can use the
+          # following flag to have the proxy connect over private IP
+          # - "-ip_address_types=PRIVATE"
+
+          # Replace DB_PORT with the port the proxy should listen on
+          # Defaults: MySQL: 3306, Postgres: 5432, SQLServer: 1433
+          - "-instances=helloslide:asia-northeast1:hello-slide-sync=tcp:1433"
+
+        # [START cloud_sql_proxy_k8s_volume_mount]
+          # This flag specifies where the service account key can be found
+          - "-credential_file=/secrets/service_account.json"
+        securityContext:
+          # The default Cloud SQL proxy image runs as the
+          # "nonroot" user and group (uid: 65532) by default.
+          runAsNonRoot: true
+        volumeMounts:
+        - name: cloud-sql-iam-secret
+          mountPath: /secrets/
+          readOnly: true
+      volumes:
+      - name: cloud-sql-iam-secret
+        secret:
+          secretName: synchronous-controller-iam
