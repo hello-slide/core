@@ -5,8 +5,8 @@
 
 ## Overview
 
-HelloSlide APIではDaprを使用した分散アプリケーションで構築されています。\
-これらのAppはそれぞれリポジトリごとに分かれており、Daprを使用してHTTPで通信します。
+HelloSlide APIでは[Dapr](https://dapr.io/)を使用してマイクロサービスとして構築されています。\
+これらのAppはそれぞれリポジトリごとに分かれており、Daprを使用してgRPCで通信します。
 
 このアプリケーションはGKE上にデプロイされています。
 
@@ -18,10 +18,12 @@ HelloSlide APIではDaprを使用した分散アプリケーションで構築�
   - PASETOを使用したトークンの作成、検証を行うDaprアプリケーションです。
 - [slide-manager](https://github.com/hello-slide/slide-manager)
   - スライドの作成、編集、削除を担当するDaprアプリケーションです。
+- [synchronous-controller](https://github.com/hello-slide/synchronous-controller)
+  - リアルタイムなスライドを実現するためのめちゃくちゃすごい（自分調べ）Dapr appです。
 
 ## How To
 
-[here](./documents/howto.md)
+[デプロイ方法](./documents/howto.md)
 
 ## LICENSE
 

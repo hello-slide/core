@@ -37,7 +37,7 @@ spec:
     spec:
       containers:
       - name: synchronous-controller
-        image: ghcr.io/hello-slide/synchronous-controller@sha256:54904a84f4ade86c7d6513be8e03c0653a152ce9876845e2b9104d79367b3abe
+        image: ghcr.io/hello-slide/synchronous-controller@sha256:8a3c56db6b884ffdf4fbf2b080c1ea23054b5e28e0c34c3950b51d1db323334b
         env:
         - name: DB_USER
           valueFrom:
