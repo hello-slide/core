@@ -28,6 +28,18 @@
 gcloud container clusters create [name] --num-nodes=1
 ```
 
+or
+
+GCPコンソールから
+
+```bash
+# クラスタ リスト
+gcloud container clusters list
+
+# GCPコンソールから追加したクラスタをkubectlと接続
+gcloud container clusters get-credentials [name]
+```
+
 ### 2.2. Dapr Appのデプロイ
 
 ```bash
@@ -48,7 +60,7 @@ dapr status -k
         private_key="********"
         email="********"
         client_id="********"
-        client_x509_cert_url="="********""
+        client_x509_cert_url="********"
         ```
 
     - account-manager-secret.env
